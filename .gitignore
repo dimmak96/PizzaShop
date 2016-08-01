@@ -1,2 +1,4 @@
 
 pizzashop.db
+db/schema.rb
+db/migrate/20160801160242_add_products.rb
