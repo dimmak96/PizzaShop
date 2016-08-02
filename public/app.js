@@ -18,7 +18,7 @@ function add_to_cart(id)
 	var x = window.localStorage.getItem(key);
 	x = x * 1 + 1;
 	window.localStorage.setItem(key, x);
-	alert('Items in your cart: ' + cart_get_number_of_items())
+	update_orders_input();
 }
 
 function cart_get_number_of_items()
@@ -55,4 +55,10 @@ function cart_get_orders()
 		}
 	}
 	return orders;
+}
+
+function update_orders_input()
+{
+	var orders = cart_get_orders();
+	$('#orders_input').val(orders);
 }
