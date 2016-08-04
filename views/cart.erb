@@ -20,6 +20,9 @@
 	   	</tr>
 	</thead>
 	<tbody>
+		<% total_price = 0 %>
+		<% total = 0 %>
+		<% total_amount = 0 %>
 		<% @items.each do |item| %>
 			
 		
@@ -38,6 +41,14 @@
 	            <%= item[1] %>
 	        </td>
         </tr>
+        	<% total_amount += item[1].to_i %>
+        	<% total_price += Product.find(item[0]).price * total_amount %>
+        	<% total_amount = 0 %>
+
+        	<% total += total_price %>
+        	<% total_price = 0 %>
+        	
         <% end %>
     </tbody>
 </table>
+	<p>Total price: <%= total %></p>
