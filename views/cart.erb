@@ -22,6 +22,7 @@
 	<tbody>
 		<% total_price = 0 %>
 		<% total = 0 %>
+		<% total_am = 0 %>
 		<% total_amount = 0 %>
 		<% @items.each do |item| %>
 			
@@ -41,6 +42,7 @@
 	            <%= item[1] %>
 	        </td>
         </tr>
+        	<% total_am += item[1].to_i %> 
         	<% total_amount += item[1].to_i %>
         	<% total_price += Product.find(item[0]).price * total_amount %>
         	<% total_amount = 0 %>
@@ -49,6 +51,44 @@
         	<% total_price = 0 %>
         	
         <% end %>
+        <tr>
+	        <th scope="row">
+	        	
+	        </th>
+	        <td>
+	        	
+	            
+	        </td>
+	        <td>
+	        	Total: <%= total %>
+	        </td>
+	        <td>
+	            Total amount: <%= total_am %>
+	        </td>
+        </tr>
     </tbody>
 </table>
-	<p>Total price: <%= total %></p>
+
+<form action="/place_order" method="POST">
+
+  <input type="hidden" name="order[orders_input]" value="<%= @orders_input %>">
+
+  <div class="form-group">
+    <label>Name</label>
+    <input name="order[name]" type="text" class="form-control"  placeholder="Name:">
+  </div>
+
+  <div class="form-group">
+    <label>Phone</label>
+    <input name="order[phone]" type="text" class="form-control"  placeholder="Phone:">
+  </div>
+
+  <div class="form-group">
+    <label>Address</label>
+    <textarea name="order[address]" type="text" class="form-control"  placeholder="Address:"></textarea> 
+  </div>
+
+  <input type="submit" class="btn btn-success" value="Place this order">
+
+</form>
+	
